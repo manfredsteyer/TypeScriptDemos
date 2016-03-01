@@ -30,8 +30,8 @@ function Log(target, key, descriptor) {
         console.error("Mit @Log dürfen nur Member dekoriert werden!");
         return;
     }
-    var property = descriptor.value; // function
-    if (!property || typeof property !== "function") {
+    var method = descriptor.value; // function
+    if (!method || typeof method !== "function") {
         console.error("Mit @Log dürfen nur Member dekoriert werden!");
         return;
     }
@@ -41,7 +41,7 @@ function Log(target, key, descriptor) {
             params[_i - 0] = arguments[_i];
         }
         console.debug('Calling ' + target.constructor.name + '.' + key);
-        return property.apply(this, params);
+        return method.apply(this, params);
     };
 }
 var Hotel = (function () {
@@ -50,7 +50,7 @@ var Hotel = (function () {
         this.ranking = ranking;
         this.price = price;
     }
-    Hotel.prototype.gi = function (preText) {
+    Hotel.prototype.info = function (preText) {
         return preText + this.name + " " + this.ranking + " " + this.price;
     };
     __decorate([
@@ -72,7 +72,7 @@ var Hotel = (function () {
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [String]), 
         __metadata('design:returntype', String)
-    ], Hotel.prototype, "gi", null);
+    ], Hotel.prototype, "info", null);
     Hotel = __decorate([
         DocuWithLabel("Repräsentiert ein Hotel"),
         __param(0, Docu), 

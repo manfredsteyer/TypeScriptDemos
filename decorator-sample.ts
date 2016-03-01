@@ -24,15 +24,15 @@ function Log(target, key?, descriptor?) {
 		return;
 	}
     
-	var property = descriptor.value; // function
-	if (!property || typeof property !== "function") {
+	var method = descriptor.value; // function
+	if (!method || typeof method !== "function") {
 		console.error("Mit @Log dürfen nur Member dekoriert werden!");
 		return;
 	}
 	
 	descriptor.value = function(...params) {
 		console.debug('Calling ' + target.constructor.name + '.' + key);
-		return property.apply(this, params);
+		return method.apply(this, params);
 	}
 	
 }
@@ -57,7 +57,7 @@ class Hotel {
 
 	@Log
 	@Docu
-	gi(@Docu preText?: string): string {
+	info(@Docu preText?: string): string {
 		
 		return preText + this.name + " "+ this.ranking + " " + this.price;
 	}
