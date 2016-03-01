@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TypeScriptDemo</title>
+
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    <script>
+
+        System.config({
+            defaultJSExtensions: true
+        });
+
+        System.import("app").catch(console.error.bind(console));
+    </script>
+
+</head>
+<body>
+    Ausgaben in der Konsole!
+</body>
+</html>
